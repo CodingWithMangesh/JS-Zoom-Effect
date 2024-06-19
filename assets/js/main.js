@@ -1,17 +1,18 @@
-/* ==================== Zoom Effect on Hover ==================== */
-let Zoom = document.querySelector(".zoom");
-let imgZoom = document.getElementById("image__zoom");
+/* ==================== Image Zoom Effect on Hover ==================== */
+let zoom = document.querySelector(".zoom");
+let imgZoom = document.getElementById("image-zoom");
 
-Zoom.addEventListener("mousemove", (e) => {
+// Adding image Opacity
+zoom.addEventListener("mousemove", (event) => {
   imgZoom.style.opacity = 1;
 
-  // Calculate the cursor's position relative to the top-left corner of the Zoom element
-  let positionPx = e.x - Zoom.getBoundingClientRect().left;
-  let positionPy = e.y - Zoom.getBoundingClientRect().top;
+  // Calculate the cursor's position relative to the top-left corner of the zoom element
+  let positionPX = event.x - zoom.getBoundingClientRect().left;
+  let positionPY = event.y - zoom.getBoundingClientRect().top;
 
-  // Convert the cursor's position to a percentage of the Zoom element's size
-  let positionX = (positionPx / Zoom.offsetWidth) * 100;
-  let positionY = (positionPy / Zoom.offsetHeight) * 100;
+  // Convert the cursor's position to a percentage of the zoom element's size
+  let positionX = (positionPX / zoom.offsetWidth) * 100;
+  let positionY = (positionPY / zoom.offsetHeight) * 100;
 
   // Set CSS variables for the zoomed image's position
   imgZoom.style.setProperty("--zoom-x", positionX + "%");
@@ -21,10 +22,11 @@ Zoom.addEventListener("mousemove", (e) => {
   let transformX = -(positionX - 50) / 3.5;
   let transformY = -(positionY - 50) / 3.5;
 
-  // Apply a scale and translation transform to the zoomed image
+  // Apply a scale and translation transform to the zoom image
   imgZoom.style.transform = `scale(1.5) translateX(${transformX}%) translateY(${transformY}%)`;
 });
 
-Zoom.addEventListener("mouseout", () => {
+// Remove Image Opacity
+zoom.addEventListener("mouseout", () => {
   imgZoom.style.opacity = 0;
 });
